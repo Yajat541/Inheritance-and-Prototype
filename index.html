@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1 class="heading">Inheritance and prototype</h1>
+    <hr>
+    <div class="maincontainer">
+        <div class="container">
+        <div class="question">
+            Q1.	Create 2 objects - parent and child. Attach methods to parent and use those methods in child object using parents prototype
+        </div>
+        <div class="code">
+        <pre>
+        const parent={
+        display: function(){
+        console.log(`${this.name} and age is ${this.age}`)
+        }
+        }
+        const child=Object.create(parent)
+        const child.name="Yajat Dhawan"
+        child.age=22
+        child.display();
+        </pre>
+        </div>
+        <p class="answer">>OUTPUT :-Yajat Dhawan and age is 22</p>
+        <p class="answer">Parent object passed display function. Child Object inherit the property of parent and passed two keys and values name, age , after that child Acessed the parent display function form child</p>
+        </div>
+        <hr>
+
+        <div class="container">
+            <div class="question">
+                Q2.	Write code to explain prototype chaining
+            </div>
+            <div class="code">
+            <pre>
+            const Gfather={
+            sayHello : function(){
+            console.log("My GrandFather !!!");
+            }
+            }
+            const Father=Object.create(Gfather)
+            Father.Hello=function(){
+            console.log("Say Hi to Father");
+            }
+            const you=Object.create(Father);
+            you.Hi=function(){
+                console.log("Hi...");
+            }
+            you.sayHello();
+            </pre>
+            </div>
+            <p class="answer">>OUTPUT :-My GrandFather</p>
+            <p class="answer">Gfather property inherit to father and father property to You . You can acess the property of father and Gfather also.</p>
+            </div>
+            <hr>
+
+            <div class="container">
+                <div class="question">
+                    Q3.	Add a method to calculate sum of all elements in Array in array's protype, use that method to calculate sum for multiple arrays
+                </div>
+                <div class="code">
+                <pre>
+                Array.prototype.sum=function(){
+                    var sum=0;
+                for(var i=0;i<this.length;i++){
+                    sum+=this[i];
+                }
+                return sum;
+                }
+                var array1 = [1, 2, 3, 4, 5];
+                var array2 = [10, 20, 30];
+
+                var sum1=array1.sum();
+                var sum2=array2.sum();
+
+                console.log(sum1);
+                console.log(sum2);
+                </pre>
+                </div>
+                <p class="answer">>OUTPUT :-15 <br> 16</p>
+                </div>
+                <hr>
+
+                <div class="container">
+                    <div class="question">
+                        Q4.	Write a JavaScript function to retrieve all the names of object's own and inherited properties.
+                    </div>
+                    <div class="code">
+                    <pre>
+                        var propertyNames = [];
+                        propertyNames = propertyNames.concat(Object.getOwnPropertyNames(obj));
+                        var prototype = Object.getPrototypeOf(obj);
+                      
+                        if (prototype !== null) {
+                          propertyNames = propertyNames.concat(getAllPropertyNames(prototype));
+                        }
+                        return propertyNames;
+                      }
+                      var person = {
+                        name: "Alice",
+                        age: 30,
+                      };
+                      
+                      person.__proto__.gender = "Female";
+                      
+                      var allPropertyNames = getAllPropertyNames(person);
+                      
+                      console.log(allPropertyNames);
+                    </pre>
+                    </div>
+                    <p class="answer"></p>
+                    </div>
+                    <hr> 
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
